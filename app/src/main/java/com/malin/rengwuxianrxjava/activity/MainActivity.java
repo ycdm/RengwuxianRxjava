@@ -336,14 +336,14 @@ public class MainActivity extends Activity {
                         return null;
                     }
                 })
-                .subscribeOn(Schedulers.io())//设置事件的产生发生在IO线程
+                .subscribeOn(Schedulers.io())//设置事件的产生发生在IO线程(指定Observable自身在哪个调度器(线程)上执行)
                 .doOnSubscribe(new Action0() {
                     @Override
                     public void call() {
                         mProgressBar.setVisibility(View.VISIBLE);
                     }
                 })
-                .observeOn(AndroidSchedulers.mainThread())//设置事件的消费发生在主线程
+                .observeOn(AndroidSchedulers.mainThread())//设置事件的消费发生在主线程(指定一个观察者在哪个调度器(线程)上观察这个Observable)
                 .subscribe(new Subscriber<Void>() {
                     @Override
                     public void onCompleted() {
